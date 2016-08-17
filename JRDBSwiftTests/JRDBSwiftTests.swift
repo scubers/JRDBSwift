@@ -7,30 +7,66 @@
 //
 
 import XCTest
+import JRDB
 @testable import JRDBSwift
 
 class JRDBSwiftTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let db = FMDatabase(path: "/Users/mac/Desktop/testSwift.sqlite");
+        JRDBMgr.shareInstance().defaultDB = db
+        JRDBMgr.shareInstance().registerClazzes([
+            Animal.self,
+            Person.self,
+            Card.self,
+            Money.self,
+            ]);
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        JRDBMgr.shareInstance().close()
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    // MARK: save
+    func testSave1() {
+        let p = Person()
+        let a: Bool = (J_Insert(p).j_exe(nil))
+        assert(a)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
+    func testSave2() {
+        var ps = [Person]()
+        (0..<10).forEach { (i) in
+            ps.append(Person(i))
         }
+        let a = (J_Insert(ps).j_exe(nil) as Bool)
+        assert(a)
     }
+    
+    func testSaveOne2Many() {
+        let p = Person(0)
+        var ps = [Person]()
+        (1...10).forEach { (i) in
+            ps.append(Person(i))
+        }
+        p.children = ps
+        let a = (J_Insert(p).Recursively().j_exe(nil) as Bool)
+        assert(a)
+    }
+    
+    func testSaveCycle() {
+        let p = Person()
+        let c = Card(1)
+        p.card = c
+        c.person = p
+        let a = (J_Insert(p).Recursively().j_exe(nil) as Bool)
+        assert(a)
+    }
+    
+    
+    
     
 }

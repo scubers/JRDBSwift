@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0951EB541D645C9500E5E0C5 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0951EB531D645C9500E5E0C5 /* Person.swift */; };
 		097153F41D64565400AB395B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097153F31D64565400AB395B /* AppDelegate.swift */; };
 		097153F61D64565400AB395B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097153F51D64565400AB395B /* ViewController.swift */; };
 		097153F91D64565400AB395B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 097153F71D64565400AB395B /* Main.storyboard */; };
@@ -14,6 +15,9 @@
 		097153FE1D64565400AB395B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 097153FC1D64565400AB395B /* LaunchScreen.storyboard */; };
 		097154091D64565400AB395B /* JRDBSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097154081D64565400AB395B /* JRDBSwiftTests.swift */; };
 		097154141D64565400AB395B /* JRDBSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097154131D64565400AB395B /* JRDBSwiftUITests.swift */; };
+		097154231D64567000AB395B /* JRDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097154221D64567000AB395B /* JRDB.swift */; };
+		563F3F4B41884D2127E6414F /* Pods_JRDBSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9AE49E85C6ED8AA9E2DA594 /* Pods_JRDBSwift.framework */; };
+		785D7AB8503616716138A880 /* Pods_JRDBSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78ECF051C268047EE989DE4 /* Pods_JRDBSwiftTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0951EB531D645C9500E5E0C5 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		097153F01D64565400AB395B /* JRDBSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JRDBSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		097153F31D64565400AB395B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		097153F51D64565400AB395B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +52,13 @@
 		0971540F1D64565400AB395B /* JRDBSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JRDBSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		097154131D64565400AB395B /* JRDBSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JRDBSwiftUITests.swift; sourceTree = "<group>"; };
 		097154151D64565400AB395B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		097154221D64567000AB395B /* JRDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JRDB.swift; sourceTree = "<group>"; };
+		1A45A8449CBF0EC56FBE83E3 /* Pods-JRDBSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JRDBSwiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JRDBSwiftTests/Pods-JRDBSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
+		820FBAC1115B083C91DF8C1B /* Pods-JRDBSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JRDBSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JRDBSwift/Pods-JRDBSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		A183FA6703A136C889BD6EBB /* Pods-JRDBSwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JRDBSwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JRDBSwiftTests/Pods-JRDBSwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AFF72E958459334C1F7935D7 /* Pods-JRDBSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JRDBSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-JRDBSwift/Pods-JRDBSwift.release.xcconfig"; sourceTree = "<group>"; };
+		B78ECF051C268047EE989DE4 /* Pods_JRDBSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JRDBSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9AE49E85C6ED8AA9E2DA594 /* Pods_JRDBSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JRDBSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				563F3F4B41884D2127E6414F /* Pods_JRDBSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				785D7AB8503616716138A880 /* Pods_JRDBSwiftTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +95,8 @@
 				097154071D64565400AB395B /* JRDBSwiftTests */,
 				097154121D64565400AB395B /* JRDBSwiftUITests */,
 				097153F11D64565400AB395B /* Products */,
+				B194D39D9D2383102486AEE4 /* Pods */,
+				6260C6D0A3B8D8BDD3541DA8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +113,14 @@
 		097153F21D64565400AB395B /* JRDBSwift */ = {
 			isa = PBXGroup;
 			children = (
+				097154211D64566600AB395B /* classes */,
 				097153F31D64565400AB395B /* AppDelegate.swift */,
 				097153F51D64565400AB395B /* ViewController.swift */,
 				097153F71D64565400AB395B /* Main.storyboard */,
 				097153FA1D64565400AB395B /* Assets.xcassets */,
 				097153FC1D64565400AB395B /* LaunchScreen.storyboard */,
 				097153FF1D64565400AB395B /* Info.plist */,
+				0951EB531D645C9500E5E0C5 /* Person.swift */,
 			);
 			path = JRDBSwift;
 			sourceTree = "<group>";
@@ -125,6 +143,34 @@
 			path = JRDBSwiftUITests;
 			sourceTree = "<group>";
 		};
+		097154211D64566600AB395B /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				097154221D64567000AB395B /* JRDB.swift */,
+			);
+			path = classes;
+			sourceTree = "<group>";
+		};
+		6260C6D0A3B8D8BDD3541DA8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9AE49E85C6ED8AA9E2DA594 /* Pods_JRDBSwift.framework */,
+				B78ECF051C268047EE989DE4 /* Pods_JRDBSwiftTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B194D39D9D2383102486AEE4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				820FBAC1115B083C91DF8C1B /* Pods-JRDBSwift.debug.xcconfig */,
+				AFF72E958459334C1F7935D7 /* Pods-JRDBSwift.release.xcconfig */,
+				A183FA6703A136C889BD6EBB /* Pods-JRDBSwiftTests.debug.xcconfig */,
+				1A45A8449CBF0EC56FBE83E3 /* Pods-JRDBSwiftTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +178,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 097154181D64565400AB395B /* Build configuration list for PBXNativeTarget "JRDBSwift" */;
 			buildPhases = (
+				CABA12658CE46E9DBD25FEED /* [CP] Check Pods Manifest.lock */,
 				097153EC1D64565400AB395B /* Sources */,
 				097153ED1D64565400AB395B /* Frameworks */,
 				097153EE1D64565400AB395B /* Resources */,
+				ABDC9E7BDF514ACD820F4F03 /* [CP] Embed Pods Frameworks */,
+				62A66A5E6818F15C5CF37909 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +198,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0971541B1D64565400AB395B /* Build configuration list for PBXNativeTarget "JRDBSwiftTests" */;
 			buildPhases = (
+				81BD2712146A52068058721A /* [CP] Check Pods Manifest.lock */,
 				097154001D64565400AB395B /* Sources */,
 				097154011D64565400AB395B /* Frameworks */,
 				097154021D64565400AB395B /* Resources */,
+				472DB7ACC335FD43E40677CD /* [CP] Embed Pods Frameworks */,
+				2C9D036CE2499E1368202B54 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -251,6 +303,99 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2C9D036CE2499E1368202B54 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JRDBSwiftTests/Pods-JRDBSwiftTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		472DB7ACC335FD43E40677CD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JRDBSwiftTests/Pods-JRDBSwiftTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		62A66A5E6818F15C5CF37909 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JRDBSwift/Pods-JRDBSwift-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		81BD2712146A52068058721A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ABDC9E7BDF514ACD820F4F03 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JRDBSwift/Pods-JRDBSwift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CABA12658CE46E9DBD25FEED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		097153EC1D64565400AB395B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -258,6 +403,8 @@
 			files = (
 				097153F61D64565400AB395B /* ViewController.swift in Sources */,
 				097153F41D64565400AB395B /* AppDelegate.swift in Sources */,
+				0951EB541D645C9500E5E0C5 /* Person.swift in Sources */,
+				097154231D64567000AB395B /* JRDB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +546,7 @@
 		};
 		097154191D64565400AB395B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 820FBAC1115B083C91DF8C1B /* Pods-JRDBSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JRDBSwift/Info.plist;
@@ -410,6 +558,7 @@
 		};
 		0971541A1D64565400AB395B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFF72E958459334C1F7935D7 /* Pods-JRDBSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JRDBSwift/Info.plist;
@@ -421,6 +570,7 @@
 		};
 		0971541C1D64565400AB395B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A183FA6703A136C889BD6EBB /* Pods-JRDBSwiftTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = JRDBSwiftTests/Info.plist;
@@ -433,6 +583,7 @@
 		};
 		0971541D1D64565400AB395B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A45A8449CBF0EC56FBE83E3 /* Pods-JRDBSwiftTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = JRDBSwiftTests/Info.plist;
@@ -484,6 +635,7 @@
 				0971541A1D64565400AB395B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0971541B1D64565400AB395B /* Build configuration list for PBXNativeTarget "JRDBSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +644,7 @@
 				0971541D1D64565400AB395B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0971541E1D64565400AB395B /* Build configuration list for PBXNativeTarget "JRDBSwiftUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +653,7 @@
 				097154201D64565400AB395B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
