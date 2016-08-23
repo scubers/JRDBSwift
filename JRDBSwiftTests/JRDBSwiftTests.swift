@@ -33,7 +33,7 @@ class JRDBSwiftTests: XCTestCase {
     // MARK: save
     func testSave1() {
         let p = Person()
-        let a: Bool = (J_Insert(p).j_exe(nil))
+        let a = J_Insert(p).updateResult()
         assert(a)
     }
     
@@ -42,7 +42,7 @@ class JRDBSwiftTests: XCTestCase {
         (0..<10).forEach { (i) in
             ps.append(Person(i))
         }
-        let a = (J_Insert(ps).j_exe(nil) as Bool)
+        let a = J_Insert(ps).updateResult()
         assert(a)
     }
     
@@ -53,7 +53,7 @@ class JRDBSwiftTests: XCTestCase {
             ps.append(Person(i))
         }
         p.children = ps
-        let a = (J_Insert(p).Recursively().j_exe(nil) as Bool)
+        let a = J_Insert(p).Recursively().updateResult()
         assert(a)
     }
     
@@ -62,11 +62,39 @@ class JRDBSwiftTests: XCTestCase {
         let c = Card(1)
         p.card = c
         c.person = p
-        let a = (J_Insert(p).Recursively().j_exe(nil) as Bool)
+        let a = J_Insert(p).Recursively().updateResult()
         assert(a)
     }
     
+    // MARK: update
     
+    func testUpdate() {
+        let p = J_Select(Person).UnRecursively().list().first as? Person
+        p?.b_string = "11111"
+        let a = J_Update(p!).ColumnsJ("a_int").UnRecursively().updateResult()
+        assert(a)
+    }
     
+    // MARK: delete
     
+    func testDeleteAll() {
+        let a = J_DeleteAll(Person).updateResult()
+        assert(a)
+    }
+    
+    // MARK: query
+    func testSelectAll() {
+        let a = J_Select(Person).list()
+        print(a.count)
+    }
+    
+    func testSelectCount() {
+        let a = J_SelectCount(Person).count()
+        print(a)
+    }
+    
+    func testSelectById() {
+        let a = J_Select(Person).WhereIdIs("123123").object()
+        print(a)
+    }
 }

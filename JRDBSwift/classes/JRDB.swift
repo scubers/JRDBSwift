@@ -91,11 +91,6 @@ public extension JRDBChain {
             return self!
         }
     }
-    
-    public func j_exe<Result>(complete: JRDBChainComplete?) -> Result {
-        let result = self.exe(complete)
-        return result as! Result
-    }
 
 }
 

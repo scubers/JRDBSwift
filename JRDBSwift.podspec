@@ -14,6 +14,6 @@ Pod::Spec.new do |s|
 
     s.source_files          = "JRDBSwift/classes/**/*.swift"
 
-    s.dependency 'FMDB'
+    s.dependency 'JRDB'
 
 end
