@@ -97,4 +97,9 @@ class JRDBSwiftTests: XCTestCase {
         let a = J_Select(Person).WhereIdIs("123123").object()
         print(a)
     }
+    
+    func testSelectColumns() {
+        let a = J_SelectColumns("a_int").From(Person).list();
+        print(a)
+    }
 }

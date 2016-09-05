@@ -113,7 +113,7 @@ public class Chain<T: JRPersistent> {
     }
     
     // MARK: settings
-    public func From(from: AnyObject) -> Chain {
+    public func From(from: T.Type) -> Chain {
         self.jrdbChain.From(from)
         return self
     }
