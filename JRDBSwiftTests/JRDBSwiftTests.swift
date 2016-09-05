@@ -33,7 +33,7 @@ class JRDBSwiftTests: XCTestCase {
     // MARK: save
     func testSave1() {
         let p = Person()
-        let a = J_Insert(p).updateResult()
+        let a = J_Insert(p).update()
         assert(a)
     }
     
@@ -42,7 +42,7 @@ class JRDBSwiftTests: XCTestCase {
         (0..<10).forEach { (i) in
             ps.append(Person(i))
         }
-        let a = J_Insert(ps).updateResult()
+        let a = J_Insert(ps).update()
         assert(a)
     }
     
@@ -53,7 +53,7 @@ class JRDBSwiftTests: XCTestCase {
             ps.append(Person(i))
         }
         p.children = ps
-        let a = J_Insert(p).Recursively().updateResult()
+        let a = J_Insert(p).Recursive(true).update()
         assert(a)
     }
     
@@ -62,23 +62,23 @@ class JRDBSwiftTests: XCTestCase {
         let c = Card(1)
         p.card = c
         c.person = p
-        let a = J_Insert(p).Recursively().updateResult()
+        let a = J_Insert(p).Recursive(true).update()
         assert(a)
     }
     
     // MARK: update
     
     func testUpdate() {
-        let p = J_Select(Person).UnRecursively().list().first as? Person
+        let p = J_Select(Person).Recursive(false).list().first
         p?.b_string = "11111"
-        let a = J_Update(p!).ColumnsJ("a_int").UnRecursively().updateResult()
+        let a = J_Update(p!).Columns("a_int").Recursive(true).update()
         assert(a)
     }
     
     // MARK: delete
     
     func testDeleteAll() {
-        let a = J_DeleteAll(Person).updateResult()
+        let a = J_DeleteAll(Person).update()
         assert(a)
     }
     
