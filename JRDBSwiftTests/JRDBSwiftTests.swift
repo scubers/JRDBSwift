@@ -53,7 +53,7 @@ class JRDBSwiftTests: XCTestCase {
             ps.append(Person(i))
         }
         p.children = ps
-        let a = J_Insert(p).Recursive(true).update()
+        let a = J_Insert(p).Recursively().update()
         assert(a)
     }
     
@@ -62,8 +62,13 @@ class JRDBSwiftTests: XCTestCase {
         let c = Card(1)
         p.card = c
         c.person = p
-        let a = J_Insert(p).Recursive(true).update()
+        let a = J_Insert(p).Recursively().update()
         assert(a)
+    }
+    
+    func testSubQuery() {
+        let a = J_Select(Person).From(J_SelectColumns(["1"]).From(Person).Limit(0, 5)).Order("f_cgfloat").Descend().list();
+        print(a)
     }
     
     // MARK: update
