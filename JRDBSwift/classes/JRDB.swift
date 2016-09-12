@@ -159,7 +159,7 @@ public class Chain<T: JRPersistent> {
     }
     
     public func Recursive(recusive: Bool) -> Chain<T> {
-        jrdbChain.Recursive(recusive ? 1 : 0)
+        jrdbChain.Recursive(recusive)
         return self
     }
     public func Recursively() -> Chain<T> {
@@ -170,7 +170,7 @@ public class Chain<T: JRPersistent> {
     }
     
     public func Sync(sync: Bool) -> Chain<T> {
-        jrdbChain.Sync(sync ? 1 : 0)
+        jrdbChain.Sync(sync)
         return self
     }
     public func Safely() -> Chain<T> {
@@ -181,7 +181,7 @@ public class Chain<T: JRPersistent> {
     }
     
     public func Transaction(transaction: Bool) -> Chain<T> {
-        jrdbChain.Transaction(transaction ? 1 : 0)
+        jrdbChain.Transaction(transaction)
         return self
     }
     public func Transactional() -> Chain<T> {
@@ -192,7 +192,7 @@ public class Chain<T: JRPersistent> {
     }
     
     public func Cache(useCache: Bool) -> Chain<T> {
-        jrdbChain.Cache(useCache ? 1 : 0)
+        jrdbChain.Cache(useCache)
         return self
     }
     public func Cached() -> Chain<T> {
@@ -203,7 +203,7 @@ public class Chain<T: JRPersistent> {
     }
     
     public func Desc(desc: Bool) -> Chain<T> {
-        jrdbChain.Desc(desc ? 1 : 0)
+        jrdbChain.Desc(desc)
         return self
     }
     public func Descend() -> Chain<T> {
