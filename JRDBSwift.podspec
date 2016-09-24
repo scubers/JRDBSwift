@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
 
     s.name                  = "JRDBSwift"
-    s.version               = "1.3.3"
-    s.summary               = "The light packing of fmdb for my self"
+    s.version               = "3.0"
+    s.summary               = "3.0 is for swift 3.0"
 
     s.homepage              = "https://github.com/scubers/JRDBSwift"
     s.license               = { :type => "MIT", :file => "LICENSE" }

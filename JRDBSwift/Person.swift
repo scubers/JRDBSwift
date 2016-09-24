@@ -9,37 +9,37 @@
 
 import UIKit
 
-public class Money : NSObject {
-    public var value: String!
+open class Money : NSObject {
+    open var value: String!
     convenience init(_ a : Int) {
         self.init()
         self.value = "\(a)"
     }
 }
 
-public class Card : NSObject {
-    public var serialNumber: String!
-    weak public var person: Person!
+open class Card : NSObject {
+    open var serialNumber: String!
+    weak open var person: Person!
     convenience init(_ a : Int) {
         self.init()
         self.serialNumber = "\(a)"
     }
     
-    override public static func jr_singleLinkedPropertyNames() -> [String : AnyObject.Type]? {
-        return [
-            "person" : Person.self,
-        ]
-    }
+//    override open static func jr_singleLinkedPropertyNames() -> [String : AnyObject.Type]? {
+//        return [
+//            "person" : Person.self,
+//        ]
+//    }
 }
 
-public class Animal : NSObject {
+open class Animal : NSObject {
     
-    public var type: String!
+    open var type: String!
 }
 
-public class Person : Animal {
+open class Person : Animal {
     
-    public var animal: Animal!
+    open var animal: Animal!
     
     var bbbb: Bool = false          // yes
     
@@ -64,20 +64,21 @@ public class Person : Animal {
     var f_cgfloat1: CGFloat! = 9      // no
     var f_cgfloat2: CGFloat? = 9      // no
     
-    var g_nsData: NSData = NSData() // yes
-    var h_nsDate: NSDate = NSDate() // yes
+    var g_nsData: Data = Data() // yes
+    var h_nsDate: Date = Date() // yes
     
-    public var son: Person?
+    open var son: Person?
     
-    public var card: Card?
-    public var card1: Card?
+    open var card: Card?
+    open var card1: Card?
     
-    public var cccc: Card?
+    open var cccc: Card?
     
-    public var money: [Money]?
+    open var money: [Money]?
     
-    public var children: [Person]?
-    public var nnnn: [Person] = [Person]()
+    open var children: [Person]?
+    open var nnnn: [Person] = [Person]()
+
     
     convenience init(_ i: Int) {
         self.init()
@@ -94,19 +95,19 @@ public class Person : Animal {
         self.f_cgfloat = CGFloat(i + 14)
     }
     
-    override public static func jr_singleLinkedPropertyNames() -> [String : AnyObject.Type]? {
-        return [
-            "card" : Card.self,
-            "card1" : Card.self,
-            "son"   : Person.self,
-        ]
-    }
-    
-    override public static func jr_oneToManyLinkedPropertyNames() -> [String : AnyObject.Type]? {
-        return [
-            "money" : Money.self,
-            "children" : Person.self,
-            "nnnn" : Person.self,
-        ]
-    }
+//    override open static func jr_singleLinkedPropertyNames() -> [String : AnyObject.Type]? {
+//        return [
+//            "card" : Card.self,
+//            "card1" : Card.self,
+//            "son"   : Person.self,
+//        ]
+//    }
+//    
+//    override open static func jr_oneToManyLinkedPropertyNames() -> [String : AnyObject.Type]? {
+//        return [
+//            "money" : Money.self,
+//            "children" : Person.self,
+//            "nnnn" : Person.self,
+//        ]
+//    }
 }

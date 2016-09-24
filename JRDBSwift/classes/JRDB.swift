@@ -11,302 +11,303 @@ import JRDB
 
 // MARK: Select
 
-public func J_Select<T: JRPersistent>(clazz: T.Type) -> Chain<T> {
+public func J_Select<T: JRPersistent>(_ clazz: T.Type) -> Chain<T> {
     return Chain<T>().Select()
 }
 
-public func J_SelectCount<T: JRPersistent>(clazz: T.Type) -> Chain<T> {
+public func J_SelectCount<T: JRPersistent>(_ clazz: T.Type) -> Chain<T> {
     return Chain<T>().CountSelect()
 }
 
-public func J_SelectColumns<T: JRPersistent>(columns: String...) -> Chain<T> {
+public func J_SelectColumns<T: JRPersistent>(_ columns: String...) -> Chain<T> {
     return Chain<T>().ColumnSelect(columns)
 }
-public func J_SelectColumns<T: JRPersistent>(columns: [String]) -> Chain<T> {
+public func J_SelectColumns<T: JRPersistent>(_ columns: [String]) -> Chain<T> {
     return Chain<T>().ColumnSelect(columns)
 }
 
 // MARK: Insert
 
-public func J_Insert<T: JRPersistent>(objs:T...) -> Chain<T> {
-    return Chain<T>().Insert(objs)
+public func J_Insert<T: JRPersistent>(_ objs:T...) -> Chain<T> {
+    return Chain<T>().Insert(objs as JRPersistent)
 }
-public func J_Insert<T: JRPersistent>(objs:[T]) -> Chain<T> {
-    return Chain<T>().Insert(objs)
+public func J_Insert<T: JRPersistent>(_ objs:[T]) -> Chain<T> {
+    return Chain<T>().Insert(objs as JRPersistent)
 }
 
 
 // MARK: Update
 
-public func J_Update<T: JRPersistent>(objs:T...) -> Chain<T> {
-    return Chain<T>().Update(objs)
+public func J_Update<T: JRPersistent>(_ objs:T...) -> Chain<T> {
+    return Chain<T>().Update(objs as JRPersistent)
 }
-public func J_Update<T: JRPersistent>(objs:[T]) -> Chain<T> {
-    return Chain<T>().Update(objs)
+public func J_Update<T: JRPersistent>(_ objs:[T]) -> Chain<T> {
+    return Chain<T>().Update(objs as JRPersistent)
 }
 
 // MARK: Delete
 
-public func J_Delete<T: JRPersistent>(objs:T...) -> Chain<T> {
-    return Chain<T>().Delete(objs)
+public func J_Delete<T: JRPersistent>(_ objs:T...) -> Chain<T> {
+    return Chain<T>().Delete(objs as JRPersistent)
 }
-public func J_Delete<T: JRPersistent>(objs:[T]) -> Chain<T> {
-    return Chain<T>().Delete(objs)
+public func J_Delete<T: JRPersistent>(_ objs:[T]) -> Chain<T> {
+    return Chain<T>().Delete(objs as JRPersistent)
 }
 
 // MARK: SaveOrUpdate
 
-public func J_SaveOrUpdate<T: JRPersistent>(objs:T...) -> Chain<T> {
-    return Chain<T>().SaveOrUpdate(objs)
+public func J_SaveOrUpdate<T: JRPersistent>(_ objs:T...) -> Chain<T> {
+    return Chain<T>().SaveOrUpdate(objs as JRPersistent)
 }
-public func J_SaveOrUpdate<T: JRPersistent>(objs:[T]) -> Chain<T> {
-    return Chain<T>().SaveOrUpdate(objs)
+public func J_SaveOrUpdate<T: JRPersistent>(_ objs:[T]) -> Chain<T> {
+    return Chain<T>().SaveOrUpdate(objs as JRPersistent)
 }
 
 // MARK: DeleteAll
 
-public func J_DeleteAll<T: JRPersistent>(clazz: T.Type) -> Chain<T> {
+public func J_DeleteAll<T: JRPersistent>(_ clazz: T.Type) -> Chain<T> {
     return Chain<T>().DeleteAll()
 }
 
 // MARK: table
 
-public func J_CreateTable<T: JRPersistent>(clazz: T.Type) -> Bool {
+public func J_CreateTable<T: JRPersistent>(_ clazz: T.Type) -> Bool {
     return Chain<T>().CreateTable()
 }
-public func J_UpdateTable<T: JRPersistent>(clazz: T.Type) -> Bool {
+public func J_UpdateTable<T: JRPersistent>(_ clazz: T.Type) -> Bool {
     return Chain<T>().UpdateTable()
 }
-public func J_DropTable<T: JRPersistent>(clazz: T.Type) -> Bool {
+public func J_DropTable<T: JRPersistent>(_ clazz: T.Type) -> Bool {
     return Chain<T>().DropTable()
 }
-public func J_TruncateTable<T: JRPersistent>(clazz: T.Type) -> Bool {
+public func J_TruncateTable<T: JRPersistent>(_ clazz: T.Type) -> Bool {
     return Chain<T>().TruncateTable()
 }
 
-public class Chain<T: JRPersistent> {
+open class Chain<T: JRPersistent> {
     
-    lazy private var jrdbChain = JRDBChain()
+    lazy fileprivate var jrdbChain = JRDBChain<T>()
     
-    public var target: JRPersistent? {
+    open var target: JRPersistent? {
         return jrdbChain.target
     }
     
-    public var targetClazz: T.Type? {
+    open var targetClazz: T.Type? {
         return jrdbChain.targetClazz as? T.Type
     }
     
-    public var operation: ChainOperation {
+    open var operation: ChainOperation {
         return jrdbChain.operation
     }
     
-    public var tableName: String? {
+    open var tableName: String? {
         return jrdbChain.tableName
     }
     
-    public var queryConditions: [JRQueryCondition]? {
+    open var queryConditions: [JRQueryCondition]? {
         return jrdbChain.queryCondition
     }
     
-    public var selectColumns: [String]? {
+    open var selectColumns: [String]? {
         return jrdbChain.selectColumns
     }
     
     // MARK: settings
-    public func From(from: T.Type) -> Chain<T> {
-        jrdbChain.From(from)
+    open func From(_ from: T.Type) -> Chain<T> {
+        _ = jrdbChain.from(from)
         return self
     }
     
-    public func From(from: Chain<T>) -> Chain<T> {
-        jrdbChain.From(from.jrdbChain)
+    open func From(_ from: Chain<T>) -> Chain<T> {
+        _ = jrdbChain.from(from.jrdbChain)
         return self
     }
 
-    public func Limit(start: UInt, _ length: UInt) -> Chain<T> {
-        jrdbChain.Limit(start, length)
+    open func Limit(_ start: UInt, _ length: UInt) -> Chain<T> {
+        _ = jrdbChain.limit(start, length)
         return self
     }
     
-    public func InDB(db: FMDatabase) -> Chain<T> {
-        jrdbChain.InDB(db)
+    open func InDB(_ db: FMDatabase) -> Chain<T> {
+        _ = jrdbChain.inDB(db)
         return self
     }
     
-    public func Order(orderby: String) -> Chain<T> {
-        jrdbChain.Order(orderby)
+    open func Order(_ orderby: String) -> Chain<T> {
+        _ = jrdbChain.order(orderby)
         return self
     }
     
-    public func Group(groupby: String) -> Chain<T> {
-        jrdbChain.Group(groupby)
+    open func Group(_ groupby: String) -> Chain<T> {
+        _ = jrdbChain.group(groupby)
         return self
     }
     
-    public func Where(whereString: String) -> Chain<T> {
-        jrdbChain.Where(whereString)
+    open func Where(_ whereString: String) -> Chain<T> {
+        _ = jrdbChain.where(whereString)
         return self
     }
     
-    public func WherePKIs(pk: AnyObject) -> Chain<T> {
-        jrdbChain.WherePKIs(pk)
+    open func WherePKIs(_ pk: AnyObject) -> Chain<T> {
+        _ = jrdbChain.wherePKIs(pk)
         return self
     }
     
-    public func WhereIdIs(id: String) -> Chain<T> {
-        jrdbChain.WhereIdIs(id)
+    open func WhereIdIs(_ id: String) -> Chain<T> {
+        _ = jrdbChain.whereIdIs(id)
         return self
     }
     
-    public func Recursive(recusive: Bool) -> Chain<T> {
-        jrdbChain.Recursive(recusive)
+    open func Recursive(_ recusive: Bool) -> Chain<T> {
+        _ = jrdbChain.recursive(recusive)
         return self
     }
-    public func Recursively() -> Chain<T> {
+    open func Recursively() -> Chain<T> {
         return Recursive(true)
     }
-    public func UnRecursively() -> Chain<T> {
+    open func UnRecursively() -> Chain<T> {
         return Recursive(false)
     }
     
-    public func Sync(sync: Bool) -> Chain<T> {
-        jrdbChain.Sync(sync)
+    open func Sync(_ sync: Bool) -> Chain<T> {
+        _ = jrdbChain.sync(sync)
         return self
     }
-    public func Safely() -> Chain<T> {
+    open func Safely() -> Chain<T> {
         return Sync(true)
     }
-    public func UnSafely() -> Chain<T> {
+    open func UnSafely() -> Chain<T> {
         return Sync(false)
     }
     
-    public func Transaction(transaction: Bool) -> Chain<T> {
-        jrdbChain.Transaction(transaction)
+    open func Transaction(_ transaction: Bool) -> Chain<T> {
+        _ = jrdbChain.transaction(transaction)
         return self
     }
-    public func Transactional() -> Chain<T> {
+    open func Transactional() -> Chain<T> {
         return Transaction(true)
     }
-    public func NoTransaction() -> Chain<T> {
+    open func NoTransaction() -> Chain<T> {
         return Transaction(false)
     }
     
-    public func Cache(useCache: Bool) -> Chain<T> {
-        jrdbChain.Cache(useCache)
+    open func Cache(_ useCache: Bool) -> Chain<T> {
+        _ = jrdbChain.cache(useCache)
         return self
     }
-    public func Cached() -> Chain<T> {
+    open func Cached() -> Chain<T> {
         return Cache(true)
     }
-    public func NoCached() -> Chain<T> {
+    open func NoCached() -> Chain<T> {
         return Cache(false)
     }
     
-    public func Desc(desc: Bool) -> Chain<T> {
-        jrdbChain.Desc(desc)
+    open func Desc(_ desc: Bool) -> Chain<T> {
+        _ = jrdbChain.desc(desc)
         return self
     }
-    public func Descend() -> Chain<T> {
+    open func Descend() -> Chain<T> {
         return Desc(true)
     }
-    public func Ascend() -> Chain<T> {
+    open func Ascend() -> Chain<T> {
         return Desc(false)
     }
     
-    public func Params(params: AnyObject...) -> Chain<T> {
-        jrdbChain.Params(params)
+    open func Params(_ params: AnyObject...) -> Chain<T> {
+        _ = jrdbChain.params(params)
+        return self
+    }
+
+
+    open func Columns(_ columns: String...) -> Chain<T> {
+        _ = jrdbChain.columns(columns)
         return self
     }
     
-    public func Columns(columns: String...) -> Chain<T> {
-        jrdbChain.Columns(columns)
+    open func Ignore(_ ignores: String...) -> Chain<T> {
+        _ = jrdbChain.ignore(ignores)
         return self
     }
     
-    public func Ignore(ignores: String...) -> Chain<T> {
-        jrdbChain.Ignore(ignores)
+    open func Insert(_ objs: JRPersistent...) -> Chain<T> {
+        _ = jrdbChain.insert(objs)
         return self
     }
     
-    public func Insert(objs: JRPersistent...) -> Chain<T> {
-        jrdbChain.Insert(objs)
+    open func Update(_ objs: JRPersistent...) -> Chain<T> {
+        _ = jrdbChain.update(objs)
         return self
     }
     
-    public func Update(objs: JRPersistent...) -> Chain<T> {
-        jrdbChain.Update(objs)
+    open func Delete(_ objs: JRPersistent...) -> Chain<T> {
+        _ = jrdbChain.delete(objs)
         return self
     }
     
-    public func Delete(objs: JRPersistent...) -> Chain<T> {
-        jrdbChain.Delete(objs)
+    open func SaveOrUpdate(_ objs: JRPersistent...) -> Chain<T> {
+        _ = jrdbChain.saveOrUpdate(objs)
         return self
     }
     
-    public func SaveOrUpdate(objs: JRPersistent...) -> Chain<T> {
-        jrdbChain.SaveOrUpdate(objs)
+    open func DeleteAll() -> Chain<T> {
+        _ = jrdbChain.deleteAll(T.self)
         return self
     }
     
-    public func DeleteAll() -> Chain<T> {
-        jrdbChain.DeleteAll(T)
+    open func ColumnSelect(_ columnsArray: [String]) -> Chain<T> {
+        _ = jrdbChain.columnsSelect(columnsArray)
         return self
     }
     
-    public func ColumnSelect(columnsArray: [String]) -> Chain<T> {
-        jrdbChain.ColumnsSelect(columnsArray)
+    open func ColumnSelect(_ columns: String...) -> Chain<T> {
+        _ = jrdbChain.columnsSelect(columns)
         return self
     }
     
-    public func ColumnSelect(columns: String...) -> Chain<T> {
-        jrdbChain.ColumnsSelect(columns)
+    open func CountSelect() -> Chain<T> {
+        _ = jrdbChain.countSelect(T.self)
         return self
     }
     
-    public func CountSelect() -> Chain<T> {
-        jrdbChain.CountSelect(T)
-        return self
-    }
-    
-    public func Select() -> Chain<T> {
-        jrdbChain.Select(T)
+    open func Select() -> Chain<T> {
+        _ = jrdbChain.select(T.self)
         return self;
     }
     
-    public func CreateTable() -> Bool {
-        return jrdbChain.CreateTable(T).updateResult()
+    open func CreateTable() -> Bool {
+        return jrdbChain.createTable(T.self).updateResult()
     }
     
-    public func UpdateTable() -> Bool {
-        return jrdbChain.UpdateTable(T).updateResult()
+    open func UpdateTable() -> Bool {
+        return jrdbChain.updateTable(T.self).updateResult()
     }
     
-    public func DropTable() -> Bool {
-        return jrdbChain.DropTable(T).updateResult()
+    open func DropTable() -> Bool {
+        return jrdbChain.dropTable(T.self).updateResult()
     }
     
-    public func TruncateTable() -> Bool {
-        return jrdbChain.TruncateTable(T).updateResult()
+    open func TruncateTable() -> Bool {
+        return jrdbChain.truncateTable(T.self).updateResult()
     }
     
-    public func exe(complete: JRDBChainComplete? = nil) -> JRDBResult {
+    open func exe(_ complete: JRDBChainComplete? = nil) -> JRDBResult {
         return jrdbChain.exe(complete)
     }
     
     // MARK: execution
-    public func object() -> T {
-        return jrdbChain.object() as! T
+    open func object() -> T? {
+        return jrdbChain.object()
     }
     
-    public func count() -> UInt {
+    open func count() -> UInt {
         return jrdbChain.count()
     }
     
-    public func list() -> [T] {
-        return jrdbChain.list() as! [T]
+    open func list() -> [T] {
+        return jrdbChain.list()
     }
     
-    public func update() -> Bool {
+    open func update() -> Bool {
         return jrdbChain.updateResult()
     }
 }
