@@ -14,8 +14,8 @@ class JRDBSwiftTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        let db = FMDatabase(path: "/Users/mac/Desktop/testSwift.sqlite");
-        JRDBMgr.shareInstance().defaultDB = db
+
+        JRDBMgr.shareInstance().defaultDatabasePath = "/Users/mac/Desktop/testSwift.sqlite"
         JRDBMgr.shareInstance().registerClazzes([
             Animal.self,
             Person.self,
@@ -26,7 +26,6 @@ class JRDBSwiftTests: XCTestCase {
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        JRDBMgr.shareInstance().close()
         super.tearDown()
     }
     
@@ -67,14 +66,17 @@ class JRDBSwiftTests: XCTestCase {
     }
     
     func testSubQuery() {
-        let a = J_Select(Person).From(J_SelectColumns(["1"]).From(Person).Limit(0, 5)).Order("f_cgfloat").Descend().list();
+        let a = J_Select(Person.self)
+                    .From(J_Select(columns: ["1"]))
+                    .Limit(0, 5)
+                    .Order(by: "f_cgfloat").Descend().list();
         print(a)
     }
     
     // MARK: update
     
     func testUpdate() {
-        let p = J_Select(Person).Recursive(false).list().first
+        let p = J_Select(Person.self).Recursive(false).list().first
         p?.b_string = "11111"
         let a = J_Update(p!).Columns("a_int").Recursive(true).update()
         assert(a)
@@ -83,28 +85,26 @@ class JRDBSwiftTests: XCTestCase {
     // MARK: delete
     
     func testDeleteAll() {
-        let a = J_DeleteAll(Person).update()
+        let a = J_DeleteAll(Person.self).update()
         assert(a)
     }
     
     // MARK: query
     func testSelectAll() {
-        let a = J_Select(Person).list()
+        let a = J_Select(Person.self).list()
         print(a.count)
     }
     
     func testSelectCount() {
-        let a = J_SelectCount(Person).count()
+        let a = J_SelectCount(Person.self).count()
         print(a)
     }
     
     func testSelectById() {
-        let a = J_Select(Person).WhereIdIs("123123").object()
-        print(a)
+        _ = J_Select(Person.self).Where(IdIs: "123123").object()
     }
     
     func testSelectColumns() {
-        let a = J_SelectColumns("a_int").From(Person).list();
-        print(a)
+        _ = J_Select(columns: ["a_int", "b_double"]).From(Person.self).list()
     }
 }

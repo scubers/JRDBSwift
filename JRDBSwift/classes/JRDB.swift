@@ -19,11 +19,12 @@ public func J_SelectCount<T: JRPersistent>(_ clazz: T.Type) -> Chain<T> {
     return Chain<T>().CountSelect()
 }
 
-public func J_SelectColumns<T: JRPersistent>(_ columns: String...) -> Chain<T> {
-    return Chain<T>().ColumnSelect(columns)
+public func J_Select<T: JRPersistent>(columns: String...) -> Chain<T> {
+    return Chain<T>().Select(columns: columns)
 }
-public func J_SelectColumns<T: JRPersistent>(_ columns: [String]) -> Chain<T> {
-    return Chain<T>().ColumnSelect(columns)
+
+public func J_Select<T: JRPersistent>(columns: [String]) -> Chain<T> {
+    return Chain<T>().Select(columns: columns)
 }
 
 // MARK: Insert
@@ -31,6 +32,7 @@ public func J_SelectColumns<T: JRPersistent>(_ columns: [String]) -> Chain<T> {
 public func J_Insert<T: JRPersistent>(_ objs:T...) -> Chain<T> {
     return Chain<T>().Insert(objs as JRPersistent)
 }
+
 public func J_Insert<T: JRPersistent>(_ objs:[T]) -> Chain<T> {
     return Chain<T>().Insert(objs as JRPersistent)
 }
@@ -41,6 +43,7 @@ public func J_Insert<T: JRPersistent>(_ objs:[T]) -> Chain<T> {
 public func J_Update<T: JRPersistent>(_ objs:T...) -> Chain<T> {
     return Chain<T>().Update(objs as JRPersistent)
 }
+
 public func J_Update<T: JRPersistent>(_ objs:[T]) -> Chain<T> {
     return Chain<T>().Update(objs as JRPersistent)
 }
@@ -50,6 +53,7 @@ public func J_Update<T: JRPersistent>(_ objs:[T]) -> Chain<T> {
 public func J_Delete<T: JRPersistent>(_ objs:T...) -> Chain<T> {
     return Chain<T>().Delete(objs as JRPersistent)
 }
+
 public func J_Delete<T: JRPersistent>(_ objs:[T]) -> Chain<T> {
     return Chain<T>().Delete(objs as JRPersistent)
 }
@@ -59,6 +63,7 @@ public func J_Delete<T: JRPersistent>(_ objs:[T]) -> Chain<T> {
 public func J_SaveOrUpdate<T: JRPersistent>(_ objs:T...) -> Chain<T> {
     return Chain<T>().SaveOrUpdate(objs as JRPersistent)
 }
+
 public func J_SaveOrUpdate<T: JRPersistent>(_ objs:[T]) -> Chain<T> {
     return Chain<T>().SaveOrUpdate(objs as JRPersistent)
 }
@@ -74,12 +79,15 @@ public func J_DeleteAll<T: JRPersistent>(_ clazz: T.Type) -> Chain<T> {
 public func J_CreateTable<T: JRPersistent>(_ clazz: T.Type) -> Bool {
     return Chain<T>().CreateTable()
 }
+
 public func J_UpdateTable<T: JRPersistent>(_ clazz: T.Type) -> Bool {
     return Chain<T>().UpdateTable()
 }
+
 public func J_DropTable<T: JRPersistent>(_ clazz: T.Type) -> Bool {
     return Chain<T>().DropTable()
 }
+
 public func J_TruncateTable<T: JRPersistent>(_ clazz: T.Type) -> Bool {
     return Chain<T>().TruncateTable()
 }
@@ -92,7 +100,7 @@ open class Chain<T: JRPersistent> {
         return jrdbChain.target
     }
     
-    open var targetClazz: T.Type? {
+    open var targetClass: T.Type? {
         return jrdbChain.targetClazz as? T.Type
     }
     
@@ -102,10 +110,6 @@ open class Chain<T: JRPersistent> {
     
     open var tableName: String? {
         return jrdbChain.tableName
-    }
-    
-    open var queryConditions: [JRQueryCondition]? {
-        return jrdbChain.queryCondition
     }
     
     open var selectColumns: [String]? {
@@ -128,17 +132,17 @@ open class Chain<T: JRPersistent> {
         return self
     }
     
-    open func InDB(_ db: FMDatabase) -> Chain<T> {
+    open func In(DB db: FMDatabase) -> Chain<T> {
         _ = jrdbChain.inDB(db)
         return self
     }
     
-    open func Order(_ orderby: String) -> Chain<T> {
+    open func Order(by orderby: String) -> Chain<T> {
         _ = jrdbChain.order(orderby)
         return self
     }
     
-    open func Group(_ groupby: String) -> Chain<T> {
+    open func Group(by groupby: String) -> Chain<T> {
         _ = jrdbChain.group(groupby)
         return self
     }
@@ -148,12 +152,12 @@ open class Chain<T: JRPersistent> {
         return self
     }
     
-    open func WherePKIs(_ pk: AnyObject) -> Chain<T> {
+    open func Where(PKIs pk: AnyObject) -> Chain<T> {
         _ = jrdbChain.wherePKIs(pk)
         return self
     }
     
-    open func WhereIdIs(_ id: String) -> Chain<T> {
+    open func Where(IdIs id: String) -> Chain<T> {
         _ = jrdbChain.whereIdIs(id)
         return self
     }
@@ -163,10 +167,12 @@ open class Chain<T: JRPersistent> {
         return self
     }
     open func Recursively() -> Chain<T> {
-        return Recursive(true)
+        _ = jrdbChain.recursively()
+        return self
     }
     open func UnRecursively() -> Chain<T> {
-        return Recursive(false)
+        _ = jrdbChain.unRecursively()
+        return self
     }
     
     open func Sync(_ sync: Bool) -> Chain<T> {
@@ -174,10 +180,12 @@ open class Chain<T: JRPersistent> {
         return self
     }
     open func Safely() -> Chain<T> {
-        return Sync(true)
+        _ = jrdbChain.safely()
+        return self
     }
     open func UnSafely() -> Chain<T> {
-        return Sync(false)
+        _ = jrdbChain.unSafely()
+        return self
     }
     
     open func Transaction(_ transaction: Bool) -> Chain<T> {
@@ -185,21 +193,12 @@ open class Chain<T: JRPersistent> {
         return self
     }
     open func Transactional() -> Chain<T> {
-        return Transaction(true)
-    }
-    open func NoTransaction() -> Chain<T> {
-        return Transaction(false)
-    }
-    
-    open func Cache(_ useCache: Bool) -> Chain<T> {
-        _ = jrdbChain.cache(useCache)
+        _ = jrdbChain.transactional()
         return self
     }
-    open func Cached() -> Chain<T> {
-        return Cache(true)
-    }
-    open func NoCached() -> Chain<T> {
-        return Cache(false)
+    open func NoTransaction() -> Chain<T> {
+        _ = jrdbChain.noTransaction()
+        return self
     }
     
     open func Desc(_ desc: Bool) -> Chain<T> {
@@ -207,10 +206,12 @@ open class Chain<T: JRPersistent> {
         return self
     }
     open func Descend() -> Chain<T> {
-        return Desc(true)
+        _ = jrdbChain.descend()
+        return self
     }
     open func Ascend() -> Chain<T> {
-        return Desc(false)
+        _ = jrdbChain.ascend()
+        return self
     }
     
     open func Params(_ params: AnyObject...) -> Chain<T> {
@@ -254,12 +255,12 @@ open class Chain<T: JRPersistent> {
         return self
     }
     
-    open func ColumnSelect(_ columnsArray: [String]) -> Chain<T> {
+    open func Select(columns columnsArray: [String]) -> Chain<T> {
         _ = jrdbChain.columnsSelect(columnsArray)
         return self
     }
     
-    open func ColumnSelect(_ columns: String...) -> Chain<T> {
+    open func Select(columns: String...) -> Chain<T> {
         _ = jrdbChain.columnsSelect(columns)
         return self
     }
@@ -290,8 +291,8 @@ open class Chain<T: JRPersistent> {
         return jrdbChain.truncateTable(T.self).updateResult()
     }
     
-    open func exe(_ complete: JRDBChainComplete? = nil) -> JRDBResult {
-        return jrdbChain.exe(complete)
+    open func exe() -> JRDBResult {
+        return jrdbChain.exe()
     }
     
     // MARK: execution

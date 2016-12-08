@@ -16,6 +16,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         JRDBMgr.shareInstance().registerClazzes([])
+        
+//        J_Select(columns: "a", "b")
+//        J_Insert(self, self)
+        _ = J_Select(columns: "a", "b").From(Person.self).list()
+        _ = J_Select(columns: ["a", "b"]).From(Person.self).list()
     }
 
     override func didReceiveMemoryWarning() {
