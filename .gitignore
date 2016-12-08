@@ -4,3 +4,8 @@
 Pods/*
 
 Podfile.lock
+*.xcscheme
+
+*.plist
+
+*.xcuserstate
