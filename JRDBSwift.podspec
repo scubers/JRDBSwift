@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name                  = "JRDBSwift"
-    s.version="4.0.0"
+    s.version="4.0.1"
     s.summary               = "3.0 is for swift 3.0"
 
     s.homepage              = "https://github.com/scubers/JRDBSwift"
